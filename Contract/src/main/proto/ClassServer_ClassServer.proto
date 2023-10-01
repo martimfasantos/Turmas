@@ -1,0 +1,26 @@
+syntax = "proto3";
+package pt.ulisboa.tecnico.classes.contract.classserver;
+
+import "ClassesDefinitions.proto";
+
+// ClassServer -> ClassServer Service
+
+message PropagateStateRequest {
+  ClassState classState = 1;
+  Clock clock = 2;
+  string qualifier = 3;
+}
+
+message Clock {
+  string host = 1;
+  int32 port = 2;
+  int32 value = 3;
+}
+
+message PropagateStateResponse {
+  ResponseCode code = 1;
+}
+
+service ClassServerService {
+  rpc propagateState(PropagateStateRequest) returns (PropagateStateResponse);
+}
